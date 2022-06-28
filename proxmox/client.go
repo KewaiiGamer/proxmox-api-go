@@ -959,12 +959,16 @@ func (c *Client) DeleteVolume(vmr *VmRef, storageName string, volumeName string)
 	return
 }
 
-func (c *Client) GetVmRrdData(vmr *VmRef, data map[string]interface{}) (rrdData map[string]interface{}, err error) {
+func (c *Client) GetVmRrdData(vmr *VmRef, timeframe string, cf string) (rrdData []interface{}, err error) {
 	err = c.CheckVmRef(vmr)
 	if err != nil {
 		return nil, err
 	}
-	url := fmt.Sprintf("/nodes/%s/%s/%d/rrddata", vmr.node, vmr.vmType, vmr.vmId)
+	var data map[string]interface{}
+	url := fmt.Sprintf("/nodes/%s/%s/%d/rrddata?timeframe=%s", vmr.Node(), vmr.GetVmType(), vmr.VmId(), timeframe)
+	if cf != "" {
+		url = fmt.Sprintf("%s&cf=%s", url, cf)
+	}
 	err = c.GetJsonRetryable(url, &data, 3)
 	if err != nil {
 		return nil, err
@@ -972,7 +976,9 @@ func (c *Client) GetVmRrdData(vmr *VmRef, data map[string]interface{}) (rrdData 
 	if data["data"] == nil {
 		return nil, fmt.Errorf("vm CONFIG not readable")
 	}
-	rrdData = data["data"].(map[string]interface{})
+	for _, item := range data["data"].([]interface{}) {
+		rrdData = append(rrdData, item.(map[string]interface{}))
+	}
 	return
 }
 
