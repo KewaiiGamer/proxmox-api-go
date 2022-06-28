@@ -955,14 +955,13 @@ func (c *Client) DeleteVolume(vmr *VmRef, storageName string, volumeName string)
 	return
 }
 
-// CreateVNCProxy - Creates a TCP VNC proxy connections
 func (c *Client) CreateVNCProxy(vmr *VmRef, params map[string]interface{}) (vncProxyRes map[string]interface{}, err error) {
 	err = c.CheckVmRef(vmr)
 	if err != nil {
 		return nil, err
 	}
 	reqbody := ParamsToBody(params)
-	url := fmt.Sprintf("/nodes/%s/qemu/%d/vncproxy", vmr.node, vmr.vmId)
+	url := fmt.Sprintf("/nodes/%s/%s/%d/vncproxy", vmr.node, vmr.vmType, vmr.vmId)
 	resp, err := c.session.Post(url, nil, nil, &reqbody)
 	if err != nil {
 		return nil, err
