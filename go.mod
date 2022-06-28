@@ -1,4 +1,4 @@
-module github.com/KewaiiGamerproxmox-api-go
+module github.com/KewaiiGamer/proxmox-api-go
 
 go 1.17
 

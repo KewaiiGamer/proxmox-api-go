@@ -1,8 +1,8 @@
 package cli_metricservers_test
 
 import (
-	_ "github.com/KewaiiGamerproxmox-api-go/cli/command/commands"
-	cliTest "github.com/KewaiiGamerproxmox-api-go/test/cli"
+	_ "github.com/KewaiiGamer/proxmox-api-go/cli/command/commands"
+	cliTest "github.com/KewaiiGamer/proxmox-api-go/test/cli"
 	"testing"
 )
 

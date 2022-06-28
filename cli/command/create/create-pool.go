@@ -1,7 +1,7 @@
 package create
 
 import (
-	"github.com/KewaiiGamerproxmox-api-go/cli"
+	"github.com/KewaiiGamer/proxmox-api-go/cli"
 	"github.com/spf13/cobra"
 )
 

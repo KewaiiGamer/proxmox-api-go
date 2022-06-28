@@ -1,8 +1,8 @@
 package get
 
 import (
-	"github.com/KewaiiGamerproxmox-api-go/cli"
-	"github.com/KewaiiGamerproxmox-api-go/proxmox"
+	"github.com/KewaiiGamer/proxmox-api-go/cli"
+	"github.com/KewaiiGamer/proxmox-api-go/proxmox"
 	"github.com/spf13/cobra"
 )
 

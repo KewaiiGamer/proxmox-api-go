@@ -1,7 +1,7 @@
 package cli_pool_test
 
 import (
-	cliTest "github.com/KewaiiGamerproxmox-api-go/test/cli"
+	cliTest "github.com/KewaiiGamer/proxmox-api-go/test/cli"
 	"testing"
 )
 
