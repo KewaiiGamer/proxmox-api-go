@@ -962,7 +962,7 @@ func (c *Client) ReadRrdData(vmr *VmRef, params map[string]interface{}) (rrdData
 	}
 	reqbody := ParamsToBody(params)
 	url := fmt.Sprintf("/nodes/%s/%s/%d/rrddata", vmr.node, vmr.vmType, vmr.vmId)
-	resp, err := c.session.Post(url, nil, nil, &reqbody)
+	resp, err := c.session.GetJSON(url, nil, nil, &reqbody)
 	if err != nil {
 		return nil, err
 	}
@@ -976,6 +976,7 @@ func (c *Client) ReadRrdData(vmr *VmRef, params map[string]interface{}) (rrdData
 	rrdData = rrdData["data"].(map[string]interface{})
 	return
 }
+
 func (c *Client) CreateVNCProxy(vmr *VmRef, params map[string]interface{}) (vncProxyRes map[string]interface{}, err error) {
 	err = c.CheckVmRef(vmr)
 	if err != nil {
