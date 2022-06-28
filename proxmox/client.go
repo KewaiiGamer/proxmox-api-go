@@ -955,25 +955,20 @@ func (c *Client) DeleteVolume(vmr *VmRef, storageName string, volumeName string)
 	return
 }
 
-func (c *Client) ReadRrdData(vmr *VmRef, params map[string]interface{}) (rrdData map[string]interface{}, err error) {
+func (c *Client) GetVmRrdData(vmr *VmRef, data map[string]interface{}) (rrdData map[string]interface{}, err error) {
 	err = c.CheckVmRef(vmr)
 	if err != nil {
 		return nil, err
 	}
-	reqbody := ParamsToBody(params)
 	url := fmt.Sprintf("/nodes/%s/%s/%d/rrddata", vmr.node, vmr.vmType, vmr.vmId)
-	resp, err := c.session.GetJSON(url, nil, nil, &reqbody)
+	err = c.GetJsonRetryable(url, &data, 3)
 	if err != nil {
 		return nil, err
 	}
-	rrdData, err = ResponseJSON(resp)
-	if err != nil {
-		return nil, err
+	if data["data"] == nil {
+		return nil, fmt.Errorf("vm CONFIG not readable")
 	}
-	if rrdData["data"] == nil {
-		return nil, fmt.Errorf("VNC Proxy not readable")
-	}
-	rrdData = rrdData["data"].(map[string]interface{})
+	rrdData = data["data"].(map[string]interface{})
 	return
 }
 
