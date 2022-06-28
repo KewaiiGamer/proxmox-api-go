@@ -11,9 +11,9 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
-	"github.com/Telmate/proxmox-api-go/cli"
-	_ "github.com/Telmate/proxmox-api-go/cli/command/commands"
+	"github.com/KewaiiGamerproxmox-api-go/cli"
+	_ "github.com/KewaiiGamerproxmox-api-go/cli/command/commands"
+	"github.com/KewaiiGamerproxmox-api-go/proxmox"
 )
 
 func main() {

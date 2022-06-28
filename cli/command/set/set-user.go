@@ -1,8 +1,8 @@
 package set
 
 import (
-	"github.com/Telmate/proxmox-api-go/cli"
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/KewaiiGamerproxmox-api-go/cli"
+	"github.com/KewaiiGamerproxmox-api-go/proxmox"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +28,7 @@ For config examples see "example user"`,
 		if err != nil {
 			return
 		}
-		cli.PrintItemSet(setCmd.OutOrStdout() ,id ,"User")
+		cli.PrintItemSet(setCmd.OutOrStdout(), id, "User")
 		return
 	},
 }

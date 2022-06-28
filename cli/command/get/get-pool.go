@@ -3,7 +3,7 @@ package get
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Telmate/proxmox-api-go/cli"
+	"github.com/KewaiiGamerproxmox-api-go/cli"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +21,7 @@ var get_poolCmd = &cobra.Command{
 		if err != nil {
 			return
 		}
-		fmt.Fprintln(getCmd.OutOrStdout(),string(poolList))
+		fmt.Fprintln(getCmd.OutOrStdout(), string(poolList))
 		return
 	},
 }
